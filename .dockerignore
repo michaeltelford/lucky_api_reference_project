@@ -1,0 +1,15 @@
+.travis.yml
+.editorconfig
+.gitignore
+Dockerfile
+Procfile
+Procfile.dev
+README.md
+tasks.cr
+shard.lock
+shard.yml
+spec/
+tmp/
+tasks/
+script/
+bin/
