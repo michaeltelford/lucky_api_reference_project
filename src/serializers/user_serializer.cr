@@ -3,6 +3,10 @@ class UserSerializer < BaseSerializer
   end
 
   def render
-    {email: @user.email}
+    {
+      email: @user.email,
+      last_billed_date: @user.last_billed_date,
+      max_cost: @user.max_cost
+    }
   end
 end
