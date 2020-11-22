@@ -9,3 +9,4 @@ start_server
 .env
 /tmp
 .DS_Store
+.postgres_data

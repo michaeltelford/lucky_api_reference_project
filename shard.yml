@@ -2,7 +2,7 @@ name: billing_api
 version: 0.1.0
 
 authors:
-  - your-name-here <your-email-here>
+  - Michael Telford <michael.telford@live.com>
 
 targets:
   billing_api:

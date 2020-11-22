@@ -23,9 +23,10 @@ Below are some of the main criteria needed for a stable means of producing JSON 
 ## Setup
 
 1. [Install required dependencies](https://luckyframework.org/guides/getting-started/installing#install-required-dependencies)
-1. Update database settings in `config/database.cr`
-1. Run `script/setup`
-1. Run `lucky dev` to start the app locally at: `http://127.0.0.1:5000`
+2. Update database settings in `config/database.cr`
+3. Run `script/setup`
+4. Run `lucky dev` to start the app locally at: `http://127.0.0.1:5000`
+5. Use the header `Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.W2mTap2sSGwXHjgUxLy3ruku57djep3yu5ho7ZYS4fQ` for authenticated requests with a sample user during development.
 
 ## Docker
 

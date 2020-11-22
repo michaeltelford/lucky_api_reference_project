@@ -17,6 +17,7 @@ class Docker::DB < LuckyCli::Task
         --rm \
         -e POSTGRES_PASSWORD=postgres \
         -p 5432:5432 \
+        -v ${PWD}/.postgres_data:/var/lib/postgresql/data \
         postgres
     CMD
   end

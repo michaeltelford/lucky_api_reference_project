@@ -3,6 +3,8 @@ class User < BaseModel
   include Authentic::PasswordAuthenticatable
 
   table do
+    belongs_to plan : Plan
+
     column email : String
     column encrypted_password : String
     column last_billed_date : Time?

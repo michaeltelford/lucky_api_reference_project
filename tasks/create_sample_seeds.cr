@@ -8,10 +8,8 @@ class Db::CreateSampleSeeds < LuckyCli::Task
   summary "Add sample database records helpful for development"
 
   def call
-    # Using a Avram::Box:
-    #
-    # Use the defaults, but override just the email
     UserBox.create &.email("me@example.com")
+    UserBox.create
 
     # Using a SaveOperation:
     #

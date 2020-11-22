@@ -10,7 +10,9 @@ describe Api::Me::Show do
     response.should send_json(200,
       email: user.email,
       last_billed_date: now.to_utc,
-      max_cost: 100
+      max_cost: 100,
+      created_at: user.created_at,
+      updated_at: user.updated_at
     )
   end
 

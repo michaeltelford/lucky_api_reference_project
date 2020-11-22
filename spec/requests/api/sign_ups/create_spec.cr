@@ -1,6 +1,10 @@
 require "../../../spec_helper"
 
 describe Api::SignUps::Create do
+  before_each do
+    PlanBox.create
+  end
+
   it "creates user on sign up" do
     UserToken.stub_token("fake-token") do
       response = ApiClient.exec(Api::SignUps::Create, user: valid_params)
@@ -32,6 +36,7 @@ private def valid_params
     email:                 "test@email.com",
     password:              "password",
     password_confirmation: "password",
-    max_cost:              150
+    max_cost:              150,
+    plan_id:               PlanQuery.first.id
   }
 end
