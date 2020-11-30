@@ -7,25 +7,27 @@ describe Api::Plans::Index do
 
     response = ApiClient.auth(user).exec(Api::Plans::Index)
 
-    response.status_code.should eq 200
-    response.body.should eq([
+    response.should send_json(200,
+      plans: [
         {
+          id: PlanQuery.first.id,
           name: PlanQuery.first.name,
-          description: "A billing plan",
-          type: "standard",
-          cost: 50,
+          description: PlanQuery.first.description,
+          type: PlanQuery.first.type,
+          cost: PlanQuery.first.cost,
           created_at: PlanQuery.first.created_at,
           updated_at: PlanQuery.first.updated_at
         },
         {
+          id: PlanQuery.last.id,
           name: PlanQuery.last.name,
-          description: "A billing plan",
-          type: "standard",
-          cost: 50,
+          description: PlanQuery.last.description,
+          type: PlanQuery.last.type,
+          cost: PlanQuery.last.cost,
           created_at: PlanQuery.last.created_at,
           updated_at: PlanQuery.last.updated_at
         }
-      ].to_json
+      ]
     )
   end
 

@@ -8,11 +8,14 @@ describe Api::Me::Show do
     response = ApiClient.auth(user).exec(Api::Me::Show)
 
     response.should send_json(200,
-      email: user.email,
-      last_billed_date: now.to_utc,
-      max_cost: 100,
-      created_at: user.created_at,
-      updated_at: user.updated_at
+      user: {
+        id: user.id,
+        email: user.email,
+        last_billed_date: now.to_utc,
+        max_cost: 100,
+        created_at: user.created_at,
+        updated_at: user.updated_at
+      }
     )
   end
 
