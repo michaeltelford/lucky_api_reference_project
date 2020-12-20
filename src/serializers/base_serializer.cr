@@ -1,10 +1,17 @@
 class BaseSerializer < Lucky::Serializer
-  def initialize(@@singular_wrapper : Symbol, @@plural_wrapper : Symbol)
+  include Lucky::TextHelpers
+
+  @@wrapper : String = ""
+  @@pluralized_wrapper : String = ""
+
+  def initialize(wrapper = "data")
+    @@wrapper = wrapper
+    @@pluralized_wrapper = pluralize(nil, wrapper).split(" ").last
   end
 
   def render_with_wrapper
     {
-      @@singular_wrapper => render
+      @@wrapper => render
     }
   end
 
@@ -14,7 +21,7 @@ class BaseSerializer < Lucky::Serializer
 
   def self.for_collection_with_wrapper(collection : Enumerable, *args, **named_args)
     {
-      @@plural_wrapper => for_collection(collection, *args, **named_args)
+      @@pluralized_wrapper => for_collection(collection, *args, **named_args)
     }
   end
 
@@ -22,7 +29,7 @@ class BaseSerializer < Lucky::Serializer
     pages : Lucky::Paginator, collection : Enumerable, *args, **named_args
   )
     {
-      @@plural_wrapper => for_collection(collection, *args, **named_args),
+      @@pluralized_wrapper => for_collection(collection, *args, **named_args),
       :pagination => {
         next_page: pages.path_to_next,
         previous_page: pages.path_to_previous,

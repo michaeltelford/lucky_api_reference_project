@@ -1,6 +1,6 @@
 class PlanSerializer < BaseSerializer
   def initialize(@plan : Plan)
-    super(:plan, :plans)
+    super("plan")
   end
 
   def render
