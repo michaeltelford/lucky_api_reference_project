@@ -3,11 +3,16 @@
 # https://luckyframework.org/guides/http-and-routing/error-handling
 class Errors::Show < Lucky::ErrorAction
   DEFAULT_MESSAGE = "Something went wrong."
+
   default_format :json
   dont_report [Lucky::RouteNotFoundError, Avram::RecordNotFoundError]
 
-  def render(error : Lucky::RouteNotFoundError | Avram::RecordNotFoundError)
+  def render(error : Avram::RecordNotFoundError)
     error_json "Not found", status: 404
+  end
+
+  def render(error : Lucky::RouteNotFoundError)
+    error_json "Route does not exist", status: 500
   end
 
   # When an InvalidOperationError is raised, show a helpful error with the
@@ -24,6 +29,13 @@ class Errors::Show < Lucky::ErrorAction
   # custom 'render' methods.
   def render(error : Lucky::RenderableError)
     error_json error.renderable_message, status: error.renderable_status
+  end
+
+  def render(error : ArgumentError)
+    error_json \
+      message: "Invalid request argument",
+      details: error.to_s,
+      status: 400
   end
 
   # If none of the 'render' methods return a response for the raised Exception,
