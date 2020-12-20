@@ -6,6 +6,7 @@ class ErrorSerializer < BaseSerializer
     @details : String? = nil,
     @param : String? = nil # so you can track which param (if any) caused the problem
   )
+    super(:error, :errors)
   end
 
   def render

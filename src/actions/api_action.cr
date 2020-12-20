@@ -1,4 +1,4 @@
-# Include modules and add methods that are for all API requests
+# Include modules and add methods that are for all API requests.
 abstract class ApiAction < Lucky::Action
   # APIs typically do not need to send cookie/session data.
   # Remove this line if you want to send cookies in the response header.
@@ -10,4 +10,14 @@ abstract class ApiAction < Lucky::Action
   # By default all actions require sign in.
   # Add 'include Api::Auth::SkipRequireAuthToken' to your actions to allow all requests.
   include Api::Auth::RequireAuthToken
+
+  include Lucky::Paginator::BackendHelpers
+
+  param page : Int32?
+  param size : Int32?
+
+  # The number of paginated items per page.
+  def paginator_per_page : Int32
+    params.get?(:size).try(&.to_i) || 25
+  end
 end

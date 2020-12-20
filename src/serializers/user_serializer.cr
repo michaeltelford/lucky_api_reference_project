@@ -1,5 +1,6 @@
 class UserSerializer < BaseSerializer
   def initialize(@user : User)
+    super(:user, :users)
   end
 
   def render
