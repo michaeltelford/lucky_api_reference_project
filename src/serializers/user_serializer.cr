@@ -1,6 +1,13 @@
 class UserSerializer < BaseSerializer
   def initialize(@user : User)
-    super("user")
+  end
+
+  def self.collection_key
+    "users"
+  end
+
+  def self.object_key
+    "user"
   end
 
   def render
@@ -11,12 +18,6 @@ class UserSerializer < BaseSerializer
       max_cost: @user.max_cost,
       created_at: @user.created_at,
       updated_at: @user.updated_at
-    }
-  end
-
-  def render_with_wrapper
-    {
-      user: render
     }
   end
 end

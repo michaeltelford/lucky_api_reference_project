@@ -1,6 +1,13 @@
 class PlanSerializer < BaseSerializer
   def initialize(@plan : Plan)
-    super("plan")
+  end
+
+  def self.collection_key
+    "plans"
+  end
+
+  def self.object_key
+    "plan"
   end
 
   def render

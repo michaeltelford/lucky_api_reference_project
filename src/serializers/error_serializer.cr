@@ -4,9 +4,16 @@ class ErrorSerializer < BaseSerializer
   def initialize(
     @message : String,
     @details : String? = nil,
-    @param : String? = nil # so you can track which param (if any) caused the problem
+    @param : String? = nil # So you can track which param (if any) caused the problem.
   )
-    super("error")
+  end
+
+  def self.collection_key
+    "errors"
+  end
+
+  def self.object_key
+    "error"
   end
 
   def render

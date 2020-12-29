@@ -20,6 +20,15 @@ describe Api::Plans::Update do
     )
   end
 
+  it "doesn't update a plan because the id doesn't exist" do
+    user = UserBox.create
+    plan_id = 1000 # Doesn't exist.
+
+    response = ApiClient.auth(user).exec(Api::Plans::Update.with(plan_id), plan: valid_params)
+
+    response.status_code.should eq(404)
+  end
+
   it "fails if not authenticated" do
     user = UserBox.create
     plan_id = PlanQuery.new.last.id
