@@ -17,6 +17,7 @@ describe Api::Plans::Create do
         updated_at: PlanQuery.last.updated_at
       }
     )
+    PlanQuery.new.select_count.should eq(2)
   end
 
   it "fails if not authenticated" do

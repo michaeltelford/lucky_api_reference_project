@@ -7,15 +7,11 @@ class SignInUser < Avram::Operation
   attribute password : String
 
   # Run validations and yields the operation and the user if valid
-  def submit
+  def run
     user = user_from_email
     validate_credentials(user)
 
-    if valid?
-      yield self, user
-    else
-      yield self, nil
-    end
+    valid? ? user : nil
   end
 
   # `validate_credentials` determines if a user can sign in.

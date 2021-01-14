@@ -18,6 +18,7 @@ describe Api::Plans::Update do
         updated_at: PlanQuery.last.updated_at
       }
     )
+    PlanQuery.new.name(valid_params[:name]).size.should eq(1)
   end
 
   it "doesn't update a plan because the id doesn't exist" do
